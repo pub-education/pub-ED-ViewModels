@@ -1,0 +1,17 @@
+table {
+    border-collapse: separate;
+    border-spacing: 1.5rem 0px;
+}
+
+.form-wrapper{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
+
+.table-wrapper{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    margin-top:2rem;
+}
