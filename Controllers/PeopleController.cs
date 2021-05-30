@@ -28,15 +28,16 @@ namespace ViewModels.Controllers
         {
 
             DataModel.Search(searchString);
-            
 
-            PeopleDetailsViewModel peopleDetailsViewModel = new PeopleDetailsViewModel()
+
+            PeopleSearchViewModel peopleSearchViewModel = new PeopleSearchViewModel()
             {
-                Title = "People Details List",
-                Header = "People Details"
+                DataList = DataModel.Search(searchString),
+                Title = "People Search List",
+                Header = "People Search"
             };
 
-            return View("Details", peopleDetailsViewModel);
+            return View(peopleSearchViewModel);
         }
 
         public ViewResult Add(People person) { 

@@ -15,9 +15,14 @@ namespace ViewModels.Models
     }
 
     public class Persons : People
-    {
-        public Persons() : base() { }
+    { 
         public IList<People> data { get; set; }
+        public Persons() : base() {
+            data = new List<People>();
+        }
+       
+
+
     }
 
     public class SearchPersons : Persons
@@ -105,7 +110,7 @@ namespace ViewModels.Models
             await DataModel.WriteTempData(ret);
         }
 
-        public static async void Search(string searchString)
+        public static Persons Search(string searchString)
         {
             var tmp = DataModel.GetTempData();
 
@@ -120,10 +125,11 @@ namespace ViewModels.Models
                     p.Name = tmp.data[i].Name;
                     p.Phone = tmp.data[i].Phone;
                     ret.data.Add(p);
+                    p = new People();
                 }
             }
 
-            await DataModel.WriteTempData(ret);
+            return ret;
         }
 
         public static async Task WriteTempData(Persons data)

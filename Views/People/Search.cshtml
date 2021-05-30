@@ -1,5 +1,53 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@{
+
+    @model ViewModels.Models.ViewModels.PeopleSearchViewModel;
+    }
+
+<html>
+<head>
+    <title>@Model.Title</title>
+</head>
+<body>
+    <h1>@Model.Header</h1>
+    <div class="form-wrapper">
+        <form asp-controller="People" asp-action="Search" method="get">
+            <label>
+                Search: <br /><input type="text" name="searchString" />
+                <input type="submit" value="Search" />
+            </label>
+        </form>
+        <form asp-controller="People" asp-action="Add">
+            <label>Name: <br /><input name="name" type="text" /></label>
+            <label>Phone: <br /><input type="text" name="phone" /></label><br />
+            <label>City: <br /><input type="text" name="city" /></label>
+            <input type="submit" value="Add Entry" />
+        </form>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ Persons data = Model.DataList;}
+                @for (int i = 0; i < data.data.Count; i++)
+                //People item in @Model.ListData.data)
+                {
+                    <tr>
+                        <td>@data.data[i].Name</td>
+                        <td>@data.data[i].Phone</td>
+                        <td>@data.data[i].City</td>
+                        <td><a asp-controller="People" asp-action="Delete" asp-route-id="@i.ToString()">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
